@@ -9,7 +9,7 @@ install:
   - pip3 install virtualenv
   - python3 -m venv tutorial-env
   - source tutorial-env/bin/activate
-  - pip3 install -r requirements.txt
+  - pip install -r requirements.txt
 # command to run tests
 
 
