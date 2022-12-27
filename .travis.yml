@@ -1,15 +1,15 @@
-language: python
-python:
-  - "3.8"
-  # PyPy versions
-  - "pypy"   # currently Python 2.7.13, PyPy 7.1.1
-  - "pypy3"  # currently Python 3.6.9,  PyPy 7.3.1
-# command to install dependencies
-install:
-  - pip3 install virtualenv
-  - python3 -m venv tutorial-env
-  - source tutorial-env/bin/activate
-  - pip3 install -r requirements.txt
-# command to run tests
-
-
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - node_modules
+script:
+  - npm run build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: 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
+  local_dir: build
+  on:
+    branch: master

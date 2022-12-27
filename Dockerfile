@@ -1,12 +1,15 @@
+FROM node:13.12.0-alpine as build
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci --silent
+RUN npm install react-scripts@3.4.1 -g --silent
+COPY . ./
+RUN npm run build
 
-FROM python:3.8-slim-buster
+# production environment   esta exponiendo el 80 por default en el cloud run
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
 
-WORKDIR /python-docker
-
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
-
-COPY . .
-EXPOSE 4000
-
-CMD [ "python3", "server.py", "--host=0.0.0.0"]
+CMD ["nginx", "-g", "daemon off;"]
