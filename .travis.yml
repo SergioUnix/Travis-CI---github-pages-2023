@@ -1,18 +1,20 @@
 dist: bionic
 language: node_js
 node_js:
-  - "stable"
-cache: yarn
+- 12.10.0
+cache: npm
 
-install: 
-  - yarn install
-  
+install:
+  - npm install
+
 script:
-  - yarn run build
+  - npm run build
+
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $github_token
-  local_dir: build
+  local_dir: build 
   on:
-    branch: main
+    branch: master
+  
