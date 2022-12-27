@@ -1,19 +1,19 @@
 language: node_js
 node_js:
-- 12.10.0
-cache: npm
+  - 11.6.0
+cache: yarn
 
 install:
-  - npm install
+  - yarn install
 
 script:
-  - npm run build
+  - yarn test
+  - yarn run build
 
 deploy:
   provider: pages
-  skip_cleanup: true
-  github_token: $github_token
-  local_dir: build 
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local_dir: build
   on:
     branch: main
-  
