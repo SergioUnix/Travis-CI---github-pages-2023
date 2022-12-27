@@ -6,7 +6,7 @@ install:
   - npm install
 
 script:
-  - CI=false npm run build
+  - npm run build
 
 deploy:
   provider: pages
