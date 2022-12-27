@@ -1,11 +1,13 @@
 language: node_js
 node_js:
   - "stable"
-cache:
-  directories:
-  - node_modules
+cache: yarn
+
+install: 
+  -yarn install
+  
 script:
-  - npm run build
+  - yarn run build
 deploy:
   provider: pages
   skip_cleanup: true
