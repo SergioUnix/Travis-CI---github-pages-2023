@@ -3,16 +3,25 @@ node_js:
 - 12.10.0
 cache: npm
 
+before_install:
+  # login to docker registries (dockerhub + heroku)
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
 install:
   - npm install
 
 script:
   - npm run build
+  # build docker images
+  - docker build -t sergiounix/imagen_travis .
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $github_token
   local_dir: build 
+  script:
+    # push to dockerhub
+    - docker push sergiounix/imagen_travis
   on:
     branch: main
