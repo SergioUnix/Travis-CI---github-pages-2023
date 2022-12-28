@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Ejemplo de Travis
+          explicacion Sa
         </a>
       </header>
     </div>
